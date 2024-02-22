@@ -1,17 +1,18 @@
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import { GlobalStyle } from './style/global';
-import { ThemeProvider } from 'styled-components';
-import { dark, light } from './style/theme';
+import { ThemeName, getTheme } from './style/theme';
+import ThemeSwicher from './components/header/ThemeSwicher';
+import { useContext, useState } from 'react';
+import { BookStoreThemeProvider, ThemeContext } from './context/themeContext';
 
 function App() {
   return (
-    <ThemeProvider theme={dark}>
-      <GlobalStyle themeName='dark' />
+    <BookStoreThemeProvider>
+      <ThemeSwicher />
       <Layout>
         <Home />
       </Layout>
-    </ThemeProvider>
+    </BookStoreThemeProvider>
   );
 }
 

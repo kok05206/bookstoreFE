@@ -1,54 +1,52 @@
 export type ThemeName = 'light' | 'dark';
-
 export type ColorKey = 'primary' | 'background' | 'secondary' | 'third' | 'border' | 'text';
 
 export type HeadingSize = 'large' | 'medium' | 'small';
 export type ButtonSize = 'large' | 'medium' | 'small';
 export type ButtonScheme = 'primary' | 'normal';
 
-interface Theme {
-  name: string;
-  color: //{
-  //   [key in ColorKey]: string;
-  // };
-  Record<ColorKey, string>;
+export type LayoutWidth = 'large' | 'medium' | 'small';
 
+interface Theme {
+  name: ThemeName;
+  color: Record<ColorKey, string>;
   heading: {
     [key in HeadingSize]: {
       fontSize: string;
     };
   };
-
   button: {
     [key in ButtonSize]: {
       fontSize: string;
       padding: string;
     };
   };
-
   buttonScheme: {
     [key in ButtonScheme]: {
       color: string;
       backgroundColor: string;
     };
   };
-
   borderRadius: {
     default: string;
+  };
+  layout: {
+    width: {
+      [key in LayoutWidth]: string;
+    };
   };
 }
 
 export const light: Theme = {
-  name: `light`,
+  name: 'light',
   color: {
-    primary: 'brown',
-    background: 'lightgray',
-    secondary: 'blue',
+    primary: '#ff5800',
+    secondary: '#5F5F5F',
+    background: 'lightgrey',
     third: 'green',
-    border: 'grey',
+    border: 'gray',
     text: 'black',
   },
-
   heading: {
     large: {
       fontSize: '2rem',
@@ -60,7 +58,6 @@ export const light: Theme = {
       fontSize: '1rem',
     },
   },
-
   button: {
     large: {
       fontSize: '1.5rem',
@@ -75,7 +72,6 @@ export const light: Theme = {
       padding: '0.25rem 0.5rem',
     },
   },
-
   buttonScheme: {
     primary: {
       color: 'white',
@@ -83,24 +79,30 @@ export const light: Theme = {
     },
     normal: {
       color: 'black',
-      backgroundColor: 'lightgray',
+      backgroundColor: 'lightgrey',
     },
   },
-
   borderRadius: {
     default: '4px',
+  },
+  layout: {
+    width: {
+      large: '1020px',
+      medium: '760px',
+      small: '320px',
+    },
   },
 };
 
 export const dark: Theme = {
   ...light,
-  name: `dark`,
+  name: 'dark',
   color: {
     primary: 'coral',
     background: 'midnightblue',
     secondary: 'darkblue',
     third: 'darkgreen',
-    border: 'grey',
+    border: 'gray',
     text: 'black',
   },
 };

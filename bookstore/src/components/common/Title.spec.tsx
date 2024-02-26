@@ -2,40 +2,39 @@ import { render, screen } from '@testing-library/react';
 import Title from './Title';
 import { BookStoreThemeProvider } from '../../context/themeContext';
 
-describe('Title 컴포넌트 테스트', () => {
-  it('렌더를 확인', () => {
-    // 1. 렌더
+describe('title 테스트', () => {
+  it('렌더 확인', () => {
+    //1. 렌더
     render(
       <BookStoreThemeProvider>
         <Title size='large'>제목</Title>
       </BookStoreThemeProvider>
     );
-
-    // 2. 확인
+    //2. 확인
     expect(screen.getByText('제목')).toBeInTheDocument();
   });
-});
 
-it('size props 적용', () => {
-  const { container } = render(
-    <BookStoreThemeProvider>
-      <Title size='large'>제목</Title>
-    </BookStoreThemeProvider>
-  );
+  it('사이즈 확인', () => {
+    //1. 렌더
+    const { container } = render(
+      <BookStoreThemeProvider>
+        <Title size='large'>제목</Title>
+      </BookStoreThemeProvider>
+    );
+    //2. 확인
+    expect(container?.firstChild).toHaveStyle({ fontSize: '2rem' });
+  });
 
-  // eslint-disable-next-line testing-library/no-node-access
-  expect(container?.firstChild).toHaveStyle({ fontSize: '2rem' });
-});
-
-it('color props 적용', () => {
-  const { container } = render(
-    <BookStoreThemeProvider>
-      <Title size='large' color='primary'>
-        제목
-      </Title>
-    </BookStoreThemeProvider>
-  );
-
-  // eslint-disable-next-line testing-library/no-node-access
-  expect(container?.firstChild).toHaveStyle({ color: 'brown' });
+  it('컬러 확인', () => {
+    //1. 렌더
+    const { container } = render(
+      <BookStoreThemeProvider>
+        <Title size='large' color='primary'>
+          제목
+        </Title>
+      </BookStoreThemeProvider>
+    );
+    //2. 확인
+    expect(container?.firstChild).toHaveStyle({ color: 'brown' });
+  });
 });

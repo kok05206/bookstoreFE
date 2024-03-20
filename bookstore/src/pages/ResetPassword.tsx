@@ -1,12 +1,9 @@
 import Title from '../components/common/Title';
 import InputText from '../components/common/InputText';
 import Button from '../components/common/Button';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { resetPassword, resetRequest } from '../api/auth.api';
-import { useAlert } from '../hooks/useAlert';
-import { SignupStyle } from './Signup';
-import { useState } from 'react';
+import { SignupStyle } from '../pages/Signup';
+import { useAuth } from '../hooks/useAuth';
 
 export interface SignupProps {
   email: string;
@@ -14,9 +11,7 @@ export interface SignupProps {
 }
 
 export default function ResetPassword() {
-  const navigate = useNavigate();
-  const showAlert = useAlert();
-  const [resetRequested, setResetRequested] = useState(false);
+  const { userResetPassword, userResetRequest, resetRequested } = useAuth();
 
   const {
     register,
@@ -25,18 +20,7 @@ export default function ResetPassword() {
   } = useForm<SignupProps>();
 
   const onSubmit = (data: SignupProps) => {
-    if (resetRequested) {
-      // 초기화
-      resetPassword(data).then(() => {
-        showAlert('비밀번호가 초기화되었습니다.');
-        navigate('/login');
-      });
-    } else {
-      // 요청
-      resetRequest(data).then(() => {
-        setResetRequested(true);
-      });
-    }
+    return resetRequested ? userResetPassword(data) : userResetRequest(data);
   };
 
   return (
@@ -69,9 +53,6 @@ export default function ResetPassword() {
               {resetRequested ? '비밀번호 초기화' : '초기화 요청'}
             </Button>
           </fieldset>
-          {/* <div className="info">
-                        <Link to="reset">비밀번호 초기화</Link>
-                    </div> */}
         </form>
       </SignupStyle>
     </>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { useCategory } from '../../hooks/useCategory';
-import Button from '../common/Button';
+import { useCategory } from '@/hooks/useCategory';
+import Button from '@/components/common/Button';
 import { useSearchParams } from 'react-router-dom';
-import { QUERYSTRING } from '../../constants/querystring';
+import { QUERYSTRING } from '@/constants/querystring';
 
 export default function BooksFilter() {
   const { category } = useCategory();
@@ -10,6 +10,8 @@ export default function BooksFilter() {
 
   const handleCategory = (id: number | null) => {
     const newSearchParams = new URLSearchParams(searchParams);
+
+    newSearchParams.delete(QUERYSTRING.PAGE);
 
     if (id === null) {
       newSearchParams.delete(QUERYSTRING.CATEGORY_ID);

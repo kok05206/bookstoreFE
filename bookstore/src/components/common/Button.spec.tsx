@@ -1,32 +1,41 @@
 import { render, screen } from '@testing-library/react';
-import Button from './Button';
-import { BookStoreThemeProvider } from '../../context/themeContext';
+import { BookStoreThemeProvider } from '@/context/themeContext';
+import Button from '@/components/common/Button';
 
-describe('Button 컴포넌트 테스트', () => {
-  it('렌더를 확인', () => {
-    // 1. 렌더
+describe('button 테스트', () => {
+  it('렌더 확인', () => {
+    //1. 렌더
     render(
       <BookStoreThemeProvider>
         <Button size='large' scheme='primary'>
-          버튼
+          button
+        </Button>
+      </BookStoreThemeProvider>
+    );
+    //2. 확인
+    expect(screen.getByText('button')).toBeInTheDocument();
+  });
+
+  it('사이즈 확인', () => {
+    const { container } = render(
+      <BookStoreThemeProvider>
+        <Button size='large' scheme='primary'>
+          button
         </Button>
       </BookStoreThemeProvider>
     );
 
-    // 2. 확인
-    expect(screen.getByText('버튼')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toHaveStyle({ fontSize: '1.5rem' });
   });
-});
 
-it('size props 적용', () => {
-  const { container } = render(
-    <BookStoreThemeProvider>
-      <Button size='large' scheme='primary'>
-        제목
-      </Button>
-    </BookStoreThemeProvider>
-  );
-
-  // eslint-disable-next-line testing-library/no-node-access
-  expect(screen.getByRole('button')).toHaveStyle({ fontSize: '1.5rem' });
+  // it("컬러 확인", () => {
+  //     //1. 렌더
+  //     const {container} = render(
+  //         <BookStoreThemeProvider>
+  //             <Title size="large" color='primary'>제목</Title>
+  //         </BookStoreThemeProvider>
+  //     );
+  //     //2. 확인
+  //     expect(container?.firstChild).toHaveStyle({color: 'brown'})
+  // });
 });

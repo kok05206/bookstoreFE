@@ -1,7 +1,6 @@
-import { Category } from '../models/category.model';
-import { httpClient } from './http';
+import { Category } from '@/models/category.model';
+import { requestHandler } from '@/api/http';
 
 export const fetchCategory = async () => {
-  const response = await httpClient.get<Category[]>('/category');
-  return response.data;
+  return await requestHandler<Category[]>('get', '/category');
 };

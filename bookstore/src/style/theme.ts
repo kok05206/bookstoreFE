@@ -3,9 +3,9 @@ export type ColorKey = 'primary' | 'background' | 'secondary' | 'third' | 'borde
 
 export type HeadingSize = 'large' | 'medium' | 'small';
 export type ButtonSize = 'large' | 'medium' | 'small';
-export type ButtonScheme = 'primary' | 'normal';
-
+export type ButtonScheme = 'primary' | 'normal' | 'like';
 export type LayoutWidth = 'large' | 'medium' | 'small';
+export type MediaQuery = 'mobile' | 'tablet' | 'desktop';
 
 interface Theme {
   name: ThemeName;
@@ -35,16 +35,19 @@ interface Theme {
       [key in LayoutWidth]: string;
     };
   };
+  mediaQuery: {
+    [key in MediaQuery]: string;
+  };
 }
 
 export const light: Theme = {
   name: 'light',
   color: {
     primary: '#ff5800',
-    secondary: 'black',
+    secondary: '#5F5F5F',
     background: 'lightgrey',
     third: 'green',
-    border: 'gray',
+    border: '#dee2e6',
     text: 'black',
   },
   heading: {
@@ -81,6 +84,10 @@ export const light: Theme = {
       color: 'black',
       backgroundColor: 'lightgrey',
     },
+    like: {
+      color: 'white',
+      backgroundColor: 'coral',
+    },
   },
   borderRadius: {
     default: '4px',
@@ -92,6 +99,11 @@ export const light: Theme = {
       small: '320px',
     },
   },
+  mediaQuery: {
+    mobile: '(max-width: 768px)',
+    tablet: '(max-width: 1024px)',
+    desktop: '(min-width: 1025px)',
+  },
 };
 
 export const dark: Theme = {
@@ -100,10 +112,10 @@ export const dark: Theme = {
   color: {
     primary: 'coral',
     background: 'midnightblue',
-    secondary: 'darkblue',
+    secondary: 'white',
     third: 'darkgreen',
-    border: 'gray',
-    text: 'black',
+    border: 'white',
+    text: 'white',
   },
 };
 

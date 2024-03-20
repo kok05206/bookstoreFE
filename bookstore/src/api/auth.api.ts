@@ -1,19 +1,16 @@
-import { SignupProps } from '../pages/Signup';
-import { httpClient } from './http';
+import { SignupProps } from '@/pages/Signup';
+import { httpClient, requestHandler } from '@/api/http';
 
-export const signup = async (useData: SignupProps) => {
-  const response = await httpClient.post('/users/join', useData);
-  return response.data;
+export const signup = async (userData: SignupProps) => {
+  return await requestHandler('post', `/users/join`, userData);
 };
 
 export const resetRequest = async (data: SignupProps) => {
-  const response = await httpClient.post('/users/reset', data);
-  return response.data;
+  return await requestHandler('post', '/users/reset', data);
 };
 
 export const resetPassword = async (data: SignupProps) => {
-  const response = await httpClient.put('/users/reset', data);
-  return response.data;
+  return await requestHandler('put', '/users/reset', data);
 };
 
 interface LoginResponse {

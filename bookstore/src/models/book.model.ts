@@ -4,18 +4,28 @@ export interface Book {
   img: number;
   categoryId: number;
   form: string;
-  isbn: string;
+  isbn: number;
   summary: string;
   detail: string;
   author: string;
   pages: number;
   contents: string;
   price: number;
-  likes: number;
   pubDate: string;
+  likes: number;
 }
 
 export interface BookDetail extends Book {
   categoryName: string;
   liked: boolean;
 }
+
+export interface BookReviewItem {
+  id: number;
+  userName: string;
+  content: string;
+  createdAt: string;
+  score: number;
+}
+
+export type BookReviewItemWrite = Pick<BookReviewItem, 'content' | 'score'>;

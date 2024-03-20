@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logo from '../../assets/images/logo.png';
+import logo from '@/assets/images/logo.png';
 
 export default function Footer() {
   return (
@@ -34,5 +34,9 @@ const FooterStyled = styled.footer`
       font-size: 0.75rem;
       color: ${({ theme }) => theme.color.text};
     }
+  }
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    flex-direction: column;
+    align-items: center;
   }
 `;

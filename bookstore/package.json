@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "postcss-color-hex-alpha": "^9.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.1",
